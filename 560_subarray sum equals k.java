@@ -26,3 +26,15 @@ Output: 2
         }
         return count;
     }
+*************************************************************************************************************
+全是正数，可以用two pointer来做 O(n^2)
+public int subarrySum(int[] nums, int k) {
+        if (k <= 0) return 0;
+        int j = 0, sum = 0, ans = 0;
+        for (int num : nums) {
+            sum += num;
+            while (sum > k) sum -= nums[j ++];
+            if (sum == k) ans ++;
+        }
+        return ans;
+    }
