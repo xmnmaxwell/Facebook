@@ -1,4 +1,4 @@
-Binary Search Tree Iterator BST迭代器 iterator is the object enable people to traverse the container.
+Binary Search Tree Iterator BST迭代器 iterator is the object enable people to traverse the container.(Inorder)
 call next() 返回下一个最小的数, hasNext() 是否还有下一个 时间O(1), 空间O(h)
 
 O(1) and O(h) space
@@ -16,49 +16,32 @@ But next() is O(h) time.
 1   3
 
 public class BSTIterator {
+
+    Stack<TreeNode> stack;
     
-    private Stack<TreeNode> stack;
     public BSTIterator(TreeNode root) {
         stack = new Stack<>();
-        TreeNode cur = root;
-        // find the smallest one, stack: 4, 2, 1
-        while(cur != null){
-            stack.push(cur); //if curr is not null add in the stack
-            if(cur.left != null)
-                cur = cur.left; 
-            else
-                break;
-        //only when we find the left subnode to find the start point
+        if (root != null) {
+            stack.push(root); //stack 存root
+            while (stack.peek().left != null)// 当左根一直存在时一直push
+                stack.push(stack.peek().left);// stack: 4, 2, 1
         }
     }
 
     /** @return whether we have a next smallest number */
     public boolean hasNext() {
-        return !stack.isEmpty();
+        return !stack.isEmpty();// if stack is empty
     }
-    /*
-    I directly return where the pointer pointing at, which should be the left most TreeNode I previously found. 
-    What to do next? After returning the smallest TreeNode, I need to point the pointer to the next smallest TreeNode. 
-    When the current TreeNode has a right branch (It cannot have left branch, remember we traversal to the left most), 
-    we need to jump to its right child first and then traversal to its right child's left most TreeNode. 
-    When the current TreeNode doesn't have a right branch, it means there cannot be a node with value smaller than itself father node, 
-    point the pointer at its father node
+
     /** @return the next smallest number */
     public int next() {
-        TreeNode node = stack.pop();// stack: 4, 2 把1去掉开始看2
-        TreeNode cur = node;// cur -> 2
-        // traversal right branch
-        if(cur.right != null){
-            cur = cur.right;// cur -> 3
-            while(cur != null){
-                stack.push(cur); //stack: 4, 3
-                if(cur.left != null)// if it has the left we need to examine left node first
-                    cur = cur.left;
-                else
-                    break;
-            }
+        TreeNode cur = stack.pop();// 把最左边的pop出来
+        if (cur.right != null) {
+            stack.push(cur.right);//如果该node有右子树
+            while (stack.peek().left != null)
+                stack.push(stack.peek().left);//再检查右子树是否有左子树再加进栈，其实通篇就是中序遍历
         }
-        return node.val;
+        return cur.val;
     }
 }
 *********************************************************************************************************************************
