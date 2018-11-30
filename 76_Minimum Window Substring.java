@@ -1,4 +1,8 @@
 两个字符串，找到字符串s中最短的包含target其的anagram的字符串，返回该最小字符串
+Input: S = "ADOBECODEBANC", T = "ABC"
+Output: "BANC"
+
+O(n)
  public String minWindow(String s, String t) {
         if(t.length()> s.length() || s == null || t === null) return ""; // deal with exception case
         Map<Character, Integer> map = new HashMap<>();// create a map to store the characters in t and its frequency
