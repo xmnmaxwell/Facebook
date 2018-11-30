@@ -1,4 +1,5 @@
-Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results.
+Remove the minimum number of invalid parentheses in order to make the 
+string valid. Return all possible results.
 Input: "(a)())()"
 Output: ["(a)()()", "(a())()"]
 /*
@@ -9,7 +10,7 @@ dfs(res, s, l, r, start)其中start为删除指针起点 dfs内有for loop每次
 如果发现是左括号，那么如果l > 0，那么就在Sring上操作把这个括号删了，然后start指针转移到被删括号的下一个位置，继续递归操作删除括号。右括号同理。
 递归的控制条件是 r == 0 && l == 0 && 此时的s 是一个有效的括号组
 判断有效就是整个字符串的前部分必须左括号大于等于右括号，凡是出现右括号多的情况肯定不是有效，最后再看看整体左右括号是否相等
-时间复杂度就是O 2^(l + r)  2 power of (l+r)
+时间复杂度就是O N^(l + r)  N power of (l+r)
 */
 public List<String> removeInvalidParentheses(String s) {
     //O(nm) m是total recursion call 
@@ -59,3 +60,40 @@ public List<String> removeInvalidParentheses(String s) {
         }
         return count;
     }
+********************************************************************************************************************
+只返回一个值的
+public String removeInvalidParentheses(String s) {
+        char[] s = s.toCharArray();
+        StringBuilder s1 = new StringBuilder();
+        StringBuilder res  = new StringBuilder();
+        int open = 0;
+        for (char i : s) {
+            if (i =='(') {
+                open++;
+                s1.append(i);
+                
+            }else if (i ==')') {
+                if(open >0) {
+                    s1.append(i);
+                    open--;
+                }
+            }else {
+                s1.append(i);
+            }
+        }
+        open = 0;
+        for (int i = s1.length() -1 ; i >=0 ; i--) {
+            if (s1.charAt(i) ==')') {
+                open++;
+                res.append(s1.charAt(i));
+            }else if(s1.charAt(i) =='(') {
+                      if (open >0 ){
+                          res.append(s1.charAt(i));
+                          open--;
+                      }
+            }else {
+                res.append(s1.charAt(i));
+            }
+        }
+        return new String(res.reverse());
+        }
