@@ -28,11 +28,9 @@ public List<String> removeInvalidParentheses(String s) {
             if(i > startIndex && s.charAt(i) == s.charAt(i - 1)) { // ((()) we only need to reomve the first p, we just skip the same 
                 continue;
             }
-            
             if(leftCount > 0 && s.charAt(i) == '(') {// if the invalid leftcout> 0, we encounter the (, we delete it with leftcount -1 
                 dfs(s.substring(0, i) + s.substring(i + 1), i, leftCount - 1, rightCount, results);
             }
-            
             if(rightCount > 0 && s.charAt(i) == ')') {//if invalid rightcount >0. we encounter the ), we delete it with rightcout-1
                 dfs(s.substring(0, i) + s.substring(i + 1), i, leftCount, rightCount - 1, results);
             }
