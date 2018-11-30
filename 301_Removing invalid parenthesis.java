@@ -12,7 +12,7 @@ dfs(res, s, l, r, start)其中start为删除指针起点 dfs内有for loop每次
 时间复杂度就是O 2^(l + r)  2 power of (l+r)
 */
 public List<String> removeInvalidParentheses(String s) {
-    O(nm) m是total recursion call 
+    //O(nm) m是total recursion call 
         List<String> results = new ArrayList<>();
         int[] res = getLeftRightCount(s);//得到的是多余的括号 不valid的
         dfs(s, 0, res[0], res[1], results);//input: string, index, invalid left, invalid right, res 
