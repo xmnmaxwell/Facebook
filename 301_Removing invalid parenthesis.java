@@ -1,7 +1,7 @@
 Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results.
 Input: "(a)())()"
 Output: ["(a)()()", "(a())()"]
-
+/*
 我的思路是首先找到括号中多余的 '( '和 ‘)’的数目， 分别为l 和 r 然后DFS， 
 dfs(res, s, l, r, start)其中start为删除指针起点 dfs内有for loop每次
 遍历一个字符，start 开始看string 的字符，如果发现不是括号就跳过，如果发现是括号但是是前面
@@ -10,6 +10,7 @@ dfs(res, s, l, r, start)其中start为删除指针起点 dfs内有for loop每次
 递归的控制条件是 r == 0 && l == 0 && 此时的s 是一个有效的括号组
 判断有效就是整个字符串的前部分必须左括号大于等于右括号，凡是出现右括号多的情况肯定不是有效，最后再看看整体左右括号是否相等
 时间复杂度就是O 2^(l + r)  2 power of (l+r)
+*/
 public List<String> removeInvalidParentheses(String s) {
     O(nm) m是total recursion call 
         List<String> results = new ArrayList<>();
