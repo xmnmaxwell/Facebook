@@ -1,0 +1,17 @@
+865. smallest subtree with all the deepest nodes 最小子树上面的 节点距离root都是最大深度
+O(n^2)最坏情况linkedlis需要O(n)找深度
+// get depth of every node
+public int depth(TreeNode root){
+		if(root == null ) return 0;
+		return Math.max(depth(root.left),depth(root.right))+1;
+	}
+	public TreeNode subtreeWithAllDeepest(TreeNode root) {
+			if( root == null ) return null;
+			// divide and conqour
+			int left =  depth(root.left);
+			int right = depth(root.right);
+			if( left  == right ) return root;//左右子树高度一样，那就是root
+			if( left > right ) return subtreeWithAllDeepest(root.left);
+			//说明左侧不平衡，那么这个节点就是在左子树里
+			return subtreeWithAllDeepest(root.right);
+	}
