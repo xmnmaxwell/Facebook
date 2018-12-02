@@ -6,7 +6,7 @@ Input: nums = [5,7,7,8,8,10], target = 8
 Output: [3,4]
 
  public int[] searchRange(int[] nums, int target) {
-        int[] res = new int[]{-1, -1};
+        int[] res = new int[]{-1, -1}; //如果求是target的个数，就用这两个存放target的一头一尾
         if (nums.length == 0 || nums == null) return res;
         int start = 0, end = nums.length - 1;
         while (start + 1 < end){
@@ -17,7 +17,7 @@ Output: [3,4]
         }
         if (nums[start] == target) res[0] = start;
         else if (nums[end] == target) res[0] = end;
-        else res[0] = -1;
+        else res[0] = -1;  
         
         start = 0;
         end = nums.length - 1;
