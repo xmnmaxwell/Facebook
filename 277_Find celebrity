@@ -1,0 +1,20 @@
+277. Find celebrity
+O(n) ，遍历n，如果ans认识i，ans赋值i，最后剩下的ans最有可能是名人，
+最后在验证是否名人认识一个人则没有名人，如果有个人不认识ans也说明没有名人
+ public int findCelebrity(int n) {
+        int ans = 0;
+        for (int i = 1; i < n; i++){
+            if (knows(ans, i)){
+                ans = i;
+            }
+        }
+        for (int i = 0; i < n; i++){
+            if (ans != i && knows(ans, i)){
+                return -1;
+            }
+            if (ans != i && !knows(i, ans)){
+                return -1;
+            }
+        }
+        return ans;
+    }
