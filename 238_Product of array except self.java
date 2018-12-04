@@ -16,3 +16,19 @@ Output: [24,12,8,6]
         }
         return res;
     }
+***********************************************************************************************************
+// Use division and zero judge
+class Solution { //2 5 0 3 1 4 0
+    public int[] productExceptSelf(int[] nums) {
+        int sum = 1, count = 0;//count is for calculate how many zero
+        for (int i = 0; i < nums.length; i ++) {
+            if (nums[i] == 0) count ++;
+            else sum *= nums[i];   //calculator all the product of non zero element
+        }
+        for (int i = 0; i < nums.length; i ++) {
+            nums[i] = nums[i] == 0 ?
+                (count > 1 ? 0 : sum) ://对于0元素对应的乘积，如果count>1说明除了这个元素本身还有0，那结果就是0，否的话就是所有乘积
+                (count > 0 ? 0 : sum / nums[i]);//对非0元素的如果count只要有哪怕1个，结果也是0.
+        }
+        return nums;
+    }
