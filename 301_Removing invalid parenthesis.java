@@ -62,30 +62,31 @@ public List<String> removeInvalidParentheses(String s) {
     }
 ********************************************************************************************************************
 只返回一个值的
+Output: ["(a)()()", "(a())()"]
 public String removeInvalidParentheses(String s) {
         char[] s = s.toCharArray();
-        StringBuilder s1 = new StringBuilder();
-        StringBuilder res  = new StringBuilder();
-        int open = 0;
+        StringBuilder s1 = new StringBuilder(); //存储合格的数据
+        StringBuilder res  = new StringBuilder(); 
+        int open = 0;//张开的数量
         for (char i : s) {
-            if (i =='(') {
+            if (i =='(') {//如果左括号，open+1，添加左括号
                 open++;
                 s1.append(i);
                 
-            }else if (i ==')') {
+            }else if (i ==')') { //右括号必须open大于0才可以
                 if(open >0) {
                     s1.append(i);
                     open--;
                 }
-            }else {
+            }else {//普通字符
                 s1.append(i);
             }
         }
-        open = 0;
+        open = 0;// open重置为0，将s1里的元素倒着加回去，为什么要做这一步因为有可能左括号多，((((((a))所以要倒叙加把多的左括号去掉
         for (int i = s1.length() -1 ; i >=0 ; i--) {
             if (s1.charAt(i) ==')') {
                 open++;
-                res.append(s1.charAt(i));
+                res.append(s1.charAt(i));//倒着一个个加
             }else if(s1.charAt(i) =='(') {
                       if (open >0 ){
                           res.append(s1.charAt(i));
