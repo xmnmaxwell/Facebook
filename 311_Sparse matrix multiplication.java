@@ -48,3 +48,70 @@ class Solution {
         return result;
     }
 }
+**********************************************************************************************
+向量点乘
+1. use hashmap
+public int[] dotHash(int[] a, int[] b) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < a.length; i ++)
+            if (a[i] > 0)
+                map.put(i, a[i]);//当a[i]>0,key是index, value是a[i]
+        int[] c = new int[a.length];
+        for (int i = 0; i < b.length; i ++)
+            if (b[i] > 0 && map.containsKey(i))
+                c[i] = b[i] * map.get(i);
+        return c;
+    }
+******************************************************************************    
+ 2.binary search
+private class Vector {
+        int index, value;
+        public Vector(int index, int value){
+            this.index = index;
+            this.value = value;
+        }
+    } // define a vector class with index and its value
+
+    private int binarySearch(List<Vector> a, int target) {
+        int l = 0, r = a.size();
+        while (l < r - 1) {
+            int mid = l + (r - l) / 2;
+            if (a.get(mid).index == target)
+                return a.get(mid).value;
+            else if (a.get(mid).index < target)
+                l = mid + 1;
+            else r = mid;
+        }
+        if (l >= a.size() || a.get(l).index != target) return 0;
+        return a.get(l).value;
+    } // this function find the target index in O(logn) time， 返回值是value of this index
+    
+     public int[] dotList(int[] va, int[] vb) {
+        List<Vector> a = new ArrayList<>();
+        for (int i = 0; i < va.length; i ++)
+            if (va[i] > 0)
+                a.add(new Vector(i, va[i]));//将不为0的元素放进vector里变成vector a
+        List<Vector> b = new ArrayList<>();
+        for (int i = 0; i < vb.length; i ++)
+            if (vb[i] > 0)
+                b.add(new Vector(i, vb[i]));//
+        int[] c = new int[va.length];
+         /* two pointer
+        int i = 0, j = 0;
+        while (i < a.size() && j < b.size()) {
+            while (i < a.size() && a.get(i).index < b.get(j).index) i ++;
+            if (i == a.size()) break;
+            while (j < b.size() && a.get(i).index > b.get(j).index) j ++;
+            if (j == b.size()) break;
+            c[a.get(i).index] = a.get(i ++).value * b.get(j ++).value;
+        }
+        */
+         for (int i = 0; i < b.size(); i ++) {//将不为0的元素放进vector里变成vector b
+            int tmp = binarySearch(a, b.get(i).index);//binaryseach在a里有没有b.get(i)的下标
+            if (tmp != 0) {
+                tmp *= b.get(i).value;// tmp
+                c[b.get(i).index] = tmp;
+            }
+        }
+        return c;
+}
