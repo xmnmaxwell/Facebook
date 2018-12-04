@@ -10,9 +10,9 @@ class Solution {
         int now = 0;
         for (int num : nums)
             if (num != 0)
-                nums[now ++] = num;
+                nums[now ++] = num;// search array, if the num is not 0,put the element in the array
         while (now < nums.length)
-            nums[now ++] = 0;
+            nums[now ++] = 0;//if now is less, assign the rest element 0.
     }
 }
 
