@@ -23,7 +23,7 @@ public List<String> topKFrequent(String[] words, int k) {
         {
             pq.offer(entry);
             if(pq.size()>k)
-                pq.poll();
+                pq.poll();//we use the minheap, once size is larger than k, we poll out the smallest, finally we will get the top k largest
         }
 
         while(!pq.isEmpty())
