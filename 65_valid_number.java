@@ -26,22 +26,23 @@ public boolean isNumber(String s) {
         s = s.trim();
         
         boolean e = false, point = false, num = false, numAfterE = false;
-        
+        // e:字符串里是否已经有e，字符串里是否有point了，是否有num了，e后面是否有number
+        +3.5e3
         for (int i = 0; i < s.length(); i ++) {
             char ch = s.charAt(i);
             
-            if (Character.isDigit(ch)) {
-                num = true;
-                numAfterE = true;
+            if (Character.isDigit(ch)) {//如果遇到数字了
+                num = true; //字符串里已经有number
+                numAfterE = true;//
             } else if (ch == 'e') {
-                if (e || !num) return false;
-                numAfterE = false;
-                e = true;
+                if (e || !num) return false; //字符里已经有e，或者e前面没有number
+                numAfterE = false;//e后面是否有number，目前没有
+                e = true;//是否有e设为true
             } else if (ch == '.') {
-                if (point || e) return false;
-                point = true;
+                if (point || e) return false;// 已经有点了，或者 e2.5这是错的
+                point = true;//标记字符串里有point了
             } else if (ch == '+' || ch == '-') {
-                if (i != 0 && s.charAt(i - 1) != 'e') return false;
+                if (i != 0 && s.charAt(i - 1) != 'e') return false;// 正负号前没有e的话都是false，这种情况还有一个条件默认+-号在第一个也可以
             } else return false;
         }
         return num & numAfterE;
