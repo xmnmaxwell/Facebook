@@ -22,8 +22,8 @@ class Solution {
     public int[][] multiply(int[][] A, int[][] B) {
         // define the result matrix
         int[][] result = new int[A.length][B[0].length];
-        List<Node> listA = new ArrayList<>();
-        List<Node> listB = new ArrayList<>();
+        List<Node> listA = new ArrayList<>(); //record the nonzero in a
+        List<Node> listB = new ArrayList<>(); //record the nonzero in b
         for (int i=0;i<A.length;i++) {
             for (int j=0; j<A[0].length; j++) {
                 if (A[i][j]!=0) listA.add(new Node(i,j));
