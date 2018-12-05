@@ -1,4 +1,51 @@
-437. Path sum 打印出来path的sum是target， 必须要从root起
+
+Path sum 1 从根节点开始判断有没有根叶路径是target的，返回T/F
+Given a binary tree and a sum, determine
+if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
+ public boolean hasPathSum(TreeNode root, int sum) {
+        if (root == null) {
+            return false;
+        }
+        if (root.left == null && root.right == null) {
+            return sum == root.val;
+        }
+        return hasPathSum (root.left, sum - root.val)
+            || hasPathSum(root.right, sum - root.val);
+    }
+**************************************************************************************
+Path sum 2 从根节点开始打印所有根叶路径是target的
+public ArrayList<ArrayList<Integer>> pathSum(TreeNode root, int sum) {
+        ArrayList<ArrayList<Integer>> rst = new ArrayList<ArrayList<Integer>>();
+        ArrayList<Integer> solution = new ArrayList<Integer>();
+
+        findSum(rst, solution, root, sum);
+        return rst;
+    }
+
+    private void findSum(ArrayList<ArrayList<Integer>> result, ArrayList<Integer> solution, TreeNode root, int sum){
+        if (root == null) {
+            return;
+        }
+
+        sum -= root.val;
+
+        if (root.left == null && root.right == null) {
+            if (sum == 0){
+                solution.add(root.val);
+                result.add(new ArrayList<Integer>(solution));
+                solution.remove(solution.size()-1);
+            }
+            return;
+        }
+
+        solution.add(root.val);
+        findSum(result, solution, root.left, sum);
+        findSum(result, solution, root.right, sum);
+        solution.remove(solution.size()-1);
+    }
+******************************************************************************************
+Path sum 3 
+437. Path sum 打印出来path的sum是target， 可以任意的路径
 root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
 
       10
