@@ -19,19 +19,19 @@ public class NestedIterator implements Iterator<Integer> {
     public NestedIterator(List<NestedInteger> nestedList) {
         stack = new Stack<>();
         for (int i = nestedList.size() - 1; i >= 0; i --)
-            stack.push(nestedList.get(i));  // 从后往前放入栈里
+            stack.push(nestedList.get(i));  // 从后往前放入栈里，先放[4,[6]]， 再放1
     }
 
     @Override
     public Integer next() {
-        return stack.pop().getInteger();
+        return stack.pop().getInteger();//如果hasNext valid pop出来1
     }
 
     @Override
     public boolean hasNext() {
         while (!stack.isEmpty() && !stack.peek().isInteger()) {
-            List<NestedInteger> cur = stack.pop().getList();
-            for (int i = cur.size() - 1; i >= 0; i --)
+            List<NestedInteger> cur = stack.pop().getList();//这时候是[4,[6]]
+            for (int i = cur.size() - 1; i >= 0; i --)//栈里是[6], 4
                 stack.push(cur.get(i));
         }
         return !stack.isEmpty();
