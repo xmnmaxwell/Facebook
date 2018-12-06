@@ -11,10 +11,10 @@
         for (int i = 0; i < s.length(); i++){
             char c =s.charAt(i);
             if (Character.isDigit(c)){
-            num = num*10 + c -'0';
+            num = num*10 + c -'0'; //if 一直检测数字，就一直叠加
             }// 累加数字
             if (c!=' ' && !Character.isDigit(c) || i + 1 == s.length()){
-                if (sign == '+'){
+                if (sign == '+'){ //这里所有的符号都是前一次的，并不是现在的
                     stack.push(num);
                 } else if (sign == '-'){
                     stack.push(-num);
