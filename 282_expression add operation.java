@@ -15,7 +15,7 @@ join() operation in Python and that takes O(N)O(N) time. Here N represents the l
 In the worst case, each digit would be an operand and we would have NN digits and N - 1N−1 operators. 
 So O(N)O(N). This is for one expression. In the worst case, we can have O(N^2 \times 3^N)O(N 
  valid expressions.
-Overall time complexity = O(N^2 \times 3^N).
+Overall time complexity = O(N^2 \times 3^N). 3 to the power of N
 
 // 0 2 3 4 5 24
 //input nums, target value, start index, temp string we use to print. the sum and last formed number, and answer list
