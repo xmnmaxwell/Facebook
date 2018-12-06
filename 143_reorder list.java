@@ -3,7 +3,7 @@ reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
 
 Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
 
-// 先找到中点，再把中点后的reverse一下,最后merge
+// 先找到中点，再把中点后的reverse一下,最后merge，merge根据奇数l1先添加，偶数l2后添加
 class Solution {
     public void reorderList(ListNode head) {
         if (head == null) return ; // notice 边界条件
