@@ -1,5 +1,5 @@
 491. increasing subsequences 找所有的上升子序列全排列,序列个数最小为2
-O(n^2) DFS
+O(2^n) DFS
 Input: [4, 6, 7, 7] 
 recursiron order: [[4, 6], [4, 6, 7], [4, 6, 7, 7], [4, 7], [4,7,7], [6, 7], [6, 7, 7], [7,7]]
 
