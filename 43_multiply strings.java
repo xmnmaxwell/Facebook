@@ -1,5 +1,11 @@
 43. multiply strings 
 O(mn)
+num2: 321
+num1: 456
+  ---------
+     1926
+    1605
+   1284    
 public String multiply(String num1, String num2) {
         if (num1 == null || num2 == null) return null; 
         int len1 = num1.length();
@@ -16,7 +22,7 @@ public String multiply(String num1, String num2) {
                 num3[i + j+ 1] = product % 10;//把余数存储在num3数组里；
                 carry = product / 10;
             }
-            num3[i + j + 1] = carry;// 为下一次循环引入进位数；
+            num3[i + j + 1] = carry;// 为下一次循环引入进位数；//出了循环j又多减了1，相当于下一位存储进位。
         }
         
         StringBuilder sb = new StringBuilder();
