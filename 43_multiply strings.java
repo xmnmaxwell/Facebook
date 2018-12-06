@@ -6,7 +6,7 @@ public String multiply(String num1, String num2) {
         int len2 = num2.length();
         int len3 = len1 + len2;
         int product = 0;
-        int[] num3 = new int[len3];
+        int[] num3 = new int[len3];// define num3 to store the 进位 and also remaining.
         int i, j;
         for(i = len1 - 1; i >= 0; i--){
             int carry = 0;
