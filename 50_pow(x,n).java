@@ -11,7 +11,7 @@ public double myPow(double x, int n) {
         double temp = x;
         while (n != 0){
             if (n % 2 == 1){
-                res *= temp;//遇到奇数 需要把之前的2的倍数先乘以下.
+                res *= temp;//遇到奇数 需要把之前的2的倍数先乘以下.因为n/2 ，n为奇数的话需要把这个因子乘在res里才不会漏掉
             }
             temp *= temp;
             n /= 2;
