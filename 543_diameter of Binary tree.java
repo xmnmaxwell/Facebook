@@ -4,7 +4,7 @@ diameter of Binary tree  二叉树的直径，一个联通的树枝的最大长�
         2   3
        / \     
       4   5    
-    int max = 0;
+    int max = 0;  O(N) + O(N)
     public int diameterOfBinaryTree(TreeNode root) {
         maxDepth(root);
         return max;
