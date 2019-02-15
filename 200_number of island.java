@@ -11,6 +11,7 @@ Input:
 00000
 
 Output: 1
+    O(MXN) O(min(M, N))
 ***********************************************************************************************
 class Solution {
     public int numIslands(char[][] grid) {
