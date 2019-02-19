@@ -7,19 +7,20 @@ O(n)
         if (s == null || s.length() == 0) return s;
         char[] arr = s.toCharArray();
         reverse(arr, 0, arr.length - 1);// "eulb si yks eht"
-        int start = 0;
+        int start = 0;// the start index of new word
         int index = 0; // , , ,cba, , , ...
         for (int i = 0; i < arr.length; i++){
-            if (arr[i] != ' '){
+            if (arr[i] != ' '){ // if arr[i] != ' ', add this to array
                 arr[index++] = arr[i];// cba, , , , , , , ...
-            } else if (i > 0 && arr[i-1] != ' '){
-                reverse(arr, start, index - 1);// abc, , , , , ...
-                arr[index++] = ' ';// abc , , , , , , , ...
+            } else if (i > 0 && arr[i-1] != ' '){ // dectec the end of the word
+                reverse(arr, start, index - 1);// abc, , , , , ... reverse the word
+                arr[index++] = ' ';// abc , , , , , , , ... // after the word, add a space
                 start = index;
             }
         }
         reverse(arr, start, index - 1);//最后一个字母后面没空格的情况，前面也满了
-        return new String(arr, 0, index > 0 && arr[index - 1] == ' ' ? index - 1 : index);// 表达方式新建由char数组组成的string，后面两个参数代表新建字符串的起始位置，index后面在13行加了空格，需要判断前一个是不是空格
+        return new String(arr, 0, index > 0 && arr[index - 1] == ' ' ? index - 1 : index);
+ // 表达方式新建由char数组组成的string，后面两个参数代表新建字符串的起始位置，index后面在13行加了空格，需要判断前一个是不是空格
     }
     private char[] reverse(char[] arr, int i, int j){
         while (i < j){
