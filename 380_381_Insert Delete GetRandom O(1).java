@@ -6,8 +6,8 @@ getRandom: Returns a random element from current set of elements. Each element m
 
 import java.util.Random;
 public class RandomizedSet {
-    ArrayList<Integer> nums;
-    HashMap<Integer, Integer> num2index;
+    ArrayList<Integer> nums; // record all the number
+    HashMap<Integer, Integer> num2index; // record the added value and the current set size
     Random rand;
 
     public RandomizedSet() {
