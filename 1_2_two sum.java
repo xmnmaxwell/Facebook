@@ -1,4 +1,5 @@
 1. two sum 
+O(n), O(n)
 public int[] twoSum(int[] nums, int target) {
         int[] res = new int[2];
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -11,23 +12,24 @@ public int[] twoSum(int[] nums, int target) {
         }
         return res;    
     }
-f2. add two numbers
- public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode res = new ListNode(0);
-        ListNode ptr = res;
-        int carry = 0;
-        
-        while (l1 != null || l2 != null){
-            int m = (l1 != null) ? l1.val : 0;
-            int n = (l2 != null) ? l2.val : 0;
-            int sum = m + n + carry;
-            carry = sum / 10;
-            ptr.next = new ListNode(sum % 10);
-            ptr = ptr.next;
-            
-            l1 = (l1 != null) ? l1.next : null;
-            l2 = (l2 != null) ? l2.next : null;
+ ***********************************************************
+ O(n), O(1)
+167. two sum if array is sorted
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        int start = 0, end = numbers.length - 1;
+        int[] res = new int[2];
+        while (start < end){
+            if(numbers[start] + numbers[end] == target){
+                res[0] = start+1;
+                res[1] = end+1;
+                break;
+            } else if (numbers[start] + numbers[end] < target){
+                start++;
+            } else {
+                end--;
+            }
         }
-        if (carry == 1) ptr.next = new ListNode(1);
-        return res.next;
+        return res;
     }
+}
