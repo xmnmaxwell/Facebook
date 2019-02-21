@@ -15,7 +15,25 @@ Output: [1,2,2,3,5,6]
           }
       }  
       while (j >= 0) nums1[len--] = nums2[j--];//if j is not zero, put the elements in nums2 in nums1 
+可以新建数组：
 
+class MergeTwoSorted {
+    public in[] mergeArrays(int[] arr1, int[] arr2, int n1, int n2) { 
+        int i = 0, j = 0, index = 0; 
+        // Traverse both array 
+        while (i<n1 && j <n2) { 
+            if (arr1[i] < arr2[j]) 
+                arr3[index++] = arr1[i++]; 
+            else
+                arr3[index++] = arr2[j++]; 
+        } 
+        // Store remaining elements of first array 
+        while (i < n1) 
+            arr3[k++] = arr1[i++]; 
+        // Store remaining elements of second array 
+        while (j < n2) 
+            arr3[k++] = arr2[j++]; 
+    } 
 
 *************************************************************************************************************
 merge 三个
