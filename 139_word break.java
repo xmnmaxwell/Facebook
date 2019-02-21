@@ -17,7 +17,7 @@ Space complexity : O(n). Length of pp array is n+1.
 public class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
         Set<String> wordDictSet=new HashSet(wordDict);
-        boolean[] dp = new boolean[s.length() + 1];
+        boolean[] dp = new boolean[s.length() + 1];//until now whether current string match the word in dict.
         dp[0] = true;
         for (int i = 1; i <= s.length(); i++) {
             for (int j = 0; j < i; j++) {
@@ -35,16 +35,19 @@ public class Solution {
 O(n3) O(n3)
 public class Solution {
     public List<String> wordBreak(String s, Set<String> wordDict) {
-        LinkedList<String>[] dp = new LinkedList[s.length() + 1];
-        LinkedList<String> initial = new LinkedList<>();
-        initial.add("");
+        List<String>[] dp = new ArrayList[s.length() + 1]; 
+        //used to store every possible sentence having all valid dictionary words using the substring s[0:k-1]
+        List<String> initial = new ArrayList<>();
+        initial.add("");// initialize
         dp[0] = initial;
         for (int i = 1; i <= s.length(); i++) {
-            LinkedList<String> list = new LinkedList<>();
+            List<String> list = new ArrayList<>();//store until i, valid words between (0,i) substring
             for (int j = 0; j < i; j++) {
                 if (dp[j].size() > 0 && wordDict.contains(s.substring(j, i))) {
-                    for (String l : dp[j]) {
-                        list.add(l + (l.equals("") ? "" : " ") + s.substring(j, i));
+                    //we have valid 
+                    for (String str : dp[j]) {
+                        list.add(str + (str.equals("") ? "" : " ") + s.substring(j, i));
+                        //if str does not exist, use "" instead
                     }
                 }
             }
