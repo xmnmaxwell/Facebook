@@ -34,6 +34,7 @@ public class RandomizedSet {
         } 
         int index = num2index.get(val);
         if (index < nums.size() - 1) { // not the last one than swap the last one with this val
+            //when you delete one ele, its post elements information is not right, the value is not the current size, so need to swap last and delete one
             int last = nums.get(nums.size() - 1);
             nums.set(index, last);
             num2index.put(last, index);
