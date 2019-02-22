@@ -2,20 +2,28 @@
 O(n)
 Input: "abcabcbb" 最长无重复的子字符串的长度， abc长度为3
 Output: 3
- public int lengthOfLongestSubstring(String s) {
-        int res = 0, left =0, right =0;
-        // define the length, two pointers
-        HashSet<Character> t = new HashSet<Character>();
-        //create hashset to store the current maximum substring
-        while (right <s.length()){// right pointers move first
-            if (!t.contains(s.charAt(right))){
-            	// if t does not contain charAt(right)
-                t.add(s.charAt(right++));//add it 
-                res = Math.max(res, t.size());// update res.
-            } else{
-            	// if contains, remove the left element, left pointer++
-                t.remove(s.charAt(left++));
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        int begin = 0, end = 0, counter = 0, d = 0;
+
+        while (end < s.length()) {
+            // > 0 means repeating character
+            //if(map[s.charAt(end++)]-- > 0) counter++;
+            char c = s.charAt(end);
+            map.put(c, map.getOrDefault(c, 0) + 1);
+            if(map.get(c) > 1) counter++;
+            end++;
+            
+            while (counter > 0) {
+                //if (map[s.charAt(begin++)]-- > 1) counter--;
+                char charTemp = s.charAt(begin);
+                if (map.get(charTemp) > 1) counter--;
+                map.put(charTemp, map.get(charTemp)-1);
+                begin++;
             }
+            d = Math.max(d, end - begin);
         }
-        return res;
+        return d;
     }
+}
