@@ -1,14 +1,4 @@
 3Sum
-/*
-iven an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? 
-Given array nums = [-1, 0, 1, 2, -1, -4],
-
-A solution set is:
-[
-  [-1, 0, 1],
-  [-1, -1, 2]
-]
-*/
 O(n^2)
 先排序， 然后开始第一层遍历，记为i，记住先去重，那么第二层遍历从i+1到末尾，
 用双指针，前后夹击看能否找到target，如果找到了，要检查两个指针的前后是否重复，
@@ -39,4 +29,36 @@ class Solution {
         }
         return res;
     }
+}
+***************************************************************************3sum closest
+class Solution {
+    // 先排序，同3sum，先进行第一轮遍历i，定义另外两个元素i+1，nums.length-1，计算三个的和，定义一个最小距离mingap，不断计算sum和target的差gap，并和mingap比较，小的话把gap赋给mingap，结果就是那个和。O(n^2)
+    public int threeSumClosest(int[] nums, int target) {
+         if (nums == null || nums.length < 3) return 0;
+        Arrays.sort(nums);
+        int res = 0;
+        int minGap = Integer.MAX_VALUE;
+        for (int i = 0; i < nums.length - 2; i++){
+            if (i > 0 && nums[i] == nums[i-1]) continue;
+            
+            int j = i + 1, k = nums.length - 1;
+            while (j < k){
+               int sum = nums[i] + nums[j] + nums[k];
+               int gap = Math.abs(sum - target); 
+                if (gap < minGap){
+                    minGap = gap;
+                    res = sum;
+                }
+                if (sum > target){
+                    k--;
+                } else if (sum < target){
+                    j++;
+                } else {
+                    return target;
+                }
+            }
+        }
+        return res;
+    }
+     
 }
