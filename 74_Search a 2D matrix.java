@@ -2,7 +2,7 @@
 里找target，其实就是二分法，把mid转换成matrix下标 
 O(logn) 
 public boolean searchMatrix(int[][] matrix, int target) {
-        if (matrix.length == 0 || matrix[0].length == 0) return false;
+        if (matrix.length == 0 || matrix[0].length == 0 || matrix == null) return false;
         int m = matrix.length, n = matrix[0].length;
         int start = 0, end = m*n-1;
         while(start + 1 < end){
@@ -14,8 +14,7 @@ public boolean searchMatrix(int[][] matrix, int target) {
                 end = mid;
             }
         }
-        if (matrix[start/n][start%n] == target) return true;
-        else if (matrix[end/n][end%n] == target) return true;
+        if (matrix[start/n][start%n] == target ||matrix[end/n][end%n] == target) return true;
         
         return false;
     }
