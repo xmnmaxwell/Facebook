@@ -40,3 +40,28 @@ if the target is greater than the value in current position,
 then the target can not be in entire row of current position because the row is sorted, 
 if the target is less than the value in current position, then the target can not in the entire
 column because the column is sorted too. We can rule out one row or one column each time, so the time complexity is O(m+n).
+******************************************************************************************************************************
+public static void main(String []args){
+        int[][] matrix = {{1,1,0,0,0,0}, {1,1,1,1,0,0}, {1,1,1,1,1,1}, {1,1,0,0,0,0}, {1,0,0,0,0,0}};
+        System.out.println(func(matrix));
+     }
+     public static int func(int[][] matrix) {
+         if (matrix.length == 0 || matrix[0].length == 0 || matrix == null) {
+             return 0;
+         }
+         int m = matrix.length;
+         int n = matrix[0].length;
+         int maxLine = 0;
+         int maxOne = 0;
+         int row = 0, col = 0;
+         while (row < m && col < n) {
+             if (matrix[row][col] == 1) {
+                 maxOne++;
+                 maxLine = row;
+                 col++;
+             } else {
+                 row++;
+             }
+         }
+         return maxOne;
+     }
